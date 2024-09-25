@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>MB College</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark py-3 fixed-top">
+        <div class="container">
+            <a href="#" class="navbar-brand">MB College</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navmenu"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Build Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/shoppingCart" class="nav-link">Shopping Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/currentSchedule" class="nav-link">Current Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#instructors" class="nav-link">Instructor's View</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/help" class="nav-link">Help</a>
+                    </li>
+                </ul>
+               <a href="/sign-in" class="btn btn-sign-in ms-3">Sign In</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="text-light p-5 text-center mt-5">
+        <h4>Edit course catalog below!</h4>
+    </section>
+
+    <section id="learn" class="p-5">
+        <h2 class="text-center">Modify:</h2>
+        <div class="container">
+		<button id="addCourseBtn" class="btn btn-add-course mb-3">Add Course</button>
+
+           
+            <table class="table table-bordered" id="courseTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Course Name</th>
+                        <th>Credit Hours</th>
+                        
+                    </tr>
+                
+            </table>
+        </div>
+    </section>
+
+   
+
+    <footer class="text-center p-4">
+        <div class="container">
+            <p class="mb-0">2024 MB College</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
