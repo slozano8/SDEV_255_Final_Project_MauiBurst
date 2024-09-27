@@ -28,3 +28,7 @@ app.get('/intructors', (req, res) =>{
     res.render('instructors');
 });
 
+app.get('/courseindex', (req, res) => {
+    res.render('courseindex')
+});
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/nav.ejs') %> 
+
+    <section class="text-light p-5 text-center mt-5">
+        <h4>Edit course catalog below!</h4>
+    </section>
+
+    <section id="learn" class="p-5">
+        <h2 class="text-center">Modify:</h2>
+        <div class="container">
+		<button id="addCourseBtn" class="btn btn-add-course mb-3">Add Course</button>
+
+           
+            <table class="table table-bordered" id="courseTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Course Name</th>
+                        <th>Credit Hours</th>
+                        
+                    </tr>
+                
+            </table>
+        </div>
+    </section>
+
+   
+
+    <footer class="text-center p-4">
+        <div class="container">
+            <p class="mb-0">2024 MB College</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
