@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const courses = require('./models/courses')
 
 const app = express();
 
@@ -11,6 +12,7 @@ mongoose.connect(dbURI, {useNewURLParser: true, useUnifiedTopology: true })
 app.set('view engine', 'ejs');
 
 app.use('/img',express.static('img'));
+app.use(express.urlencoded({ extended: true}));
 
 
 app.get('/', (req, res) => {
@@ -33,7 +35,30 @@ app.get('/instructors', (req, res) => {
     res.render('instructors');
 });
 
+app.get('/courses', (req, res) => {
+    courses.find().sort({ createdAt: -1})
+        .then((result) => {
+            res.render('index', { title: 'All Courses', courses: result})
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+})
+
+app.post('/courseindex', (req, res) => {
+    const courses = new courses(req.body);
+
+    courses.save()
+        .then((result) => {
+            res.redirect('/courseindex');
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+});
+
 app.get('/courseindex', (req, res) => {
     res.render('courseindex')
 });
+
 
