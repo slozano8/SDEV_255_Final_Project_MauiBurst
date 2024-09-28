@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-const dbURI = 'mongodb+srv://Maui_Burst:SDEV123@Maui_Burst.w4fan.mongodb.net/?retryWrites=true&w=majority&appName=Nodes-Tutorial'
+const dbURI = 'mongodb+srv://Maui_Burst:SDEV123@nodes-tutorial.w4fan.mongodb.net/'
 mongoose.connect(dbURI, {useNewURLParser: true, useUnifiedTopology: true })
     .then((result) => app.listen(3030))
     .catch((err) => console.log(err));
