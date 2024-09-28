@@ -1,12 +1,17 @@
 const express = require('express');
+const mongoose = require('mongoose');
 
 const app = express();
+
+const dbURI = 'mongodb+srv://Maui_Burst:SDEV123@Maui_Burst.w4fan.mongodb.net/?retryWrites=true&w=majority&appName=Nodes-Tutorial'
+mongoose.connect(dbURI, {useNewURLParser: true, useUnifiedTopology: true })
+    .then((result) => app.listen(3030))
+    .catch((err) => console.log(err));
 
 app.set('view engine', 'ejs');
 
 app.use('/img',express.static('img'));
 
-app.listen(3030);
 
 app.get('/', (req, res) => {
     res.render('index');
