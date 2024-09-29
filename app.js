@@ -4,6 +4,8 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const Course = require('./models/courses');
+const { CONNREFUSED } = require('dns');
+const { title } = require('process');
 
 
 
@@ -19,50 +21,91 @@ app.set('view engine', 'ejs');
 
 app.use('/img',express.static('img'));
 app.use(express.json());
+app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true}));
 app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('index', {title: 'Home'});
 });
 
 app.get('/shoppingCart', (req, res) => {
-    res.render('ShoppingCart');
+    res.render('ShoppingCart', {title: 'Shapping Cart'});
 });
 
 app.get('/currentSchedule', (req, res) => {
-    res.render('currentSchedule');
+    res.render('currentSchedule', {title: 'Current Schedule'});
 });
 
-app.get('/help', (req, res) => {
-    res.render('help');
-});
 
 app.get('/instructors', (req, res) => {
-    res.render('instructors');
+    res.render('instructors', {title: 'Instructors view'});
 });
 
 
 app.get('/courseindex', (req, res) => {
-    res.render('courseindex')
+    const Course = [];
+
+   res.render('courseindex', {title: 'Course Index', Course});
 });
 
+app.get('/help', (req, res) => {
+    res.render('help', {title: 'help'});
+});
 
+// courses routes
 
-
-
-app.post('/courseindex', (req, res) => {
-    const course = new Course;
-    res.send(req.body)
-    course.save()
+app.get('/courseindex', (req, res) => {
+    Course.find().sort({ createdAt: -1})
         .then((result) => {
-            res.redirect('/courseindex');
+            res.render('/courseindex', {title: 'Course Catalog', Course: result})
         })
         .catch((err) => {
             console.log(err);
         })
+});
+
+app.post('/courseindex', (req, res) => {
+    const course = new Course(req.body);
+
+    course.save()
+        .then((result) => {
+            res.redirect('/courseindex');
+        })
+        .catch((err) =>{
+            console.log(err);
+        })
+});
+
+app.get('/courses/:id', (req, res) => {
+    const id = req.params.id;
+    Course.findById(id)
+        .then(result => {
+            render('details', { course: result, title:'Course Detials '});
+        })
+        .catch(err => {
+            console.log(err)
+        });
+
+
+});
+
+app.delete('/courses/:id', (req, res) => {
+    const id = req.params.id;
+
+    Course.findByIdAndDelete(id)
+        .then((result) => {
+            res.json({redirect:'/courseindex'})
+        })
+        .catch(err => {
+            console.log(err)
+        })
 })
+
+
+
+
 
 
 

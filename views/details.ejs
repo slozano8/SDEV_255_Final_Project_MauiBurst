@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+<body>
+    <%- include("./partials/nav.ejs") %>
+
+    <div>
+        <h2><%= Course.title %></h2>
+        <div>
+            <p><%= Course.body %></p>
+        </div>
+        <a class="delete" data-doc="<%= Course.id %>">delete</a>
+    </div>
+    <script>
+        const courseDelete = document.querySelector('a.delete');
+
+        courseDelete.addEventListener('click', (e) =>{
+            const endpoint = `/courses/${courseDelete.dataset.doc}`;
+
+            fetch(endpoint, {
+                method:'DELETE'
+            })
+            .then((response) => response.json())
+            .then((data) => window.location.href = data.redirect) 
+            .catch(err => {
+                console.log(err);
+            })
+        })
+    </script>
+</body>
+</html>
