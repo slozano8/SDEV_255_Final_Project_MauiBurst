@@ -2,57 +2,7 @@
 <%- include('./partials/head.ejs') %>
 <body>
     <%- include('./partials/nav.ejs') %> 
-    <section class="text-light p-5 text-center mt-5">
-        
-        <div class="content">
-            <h1>Course Form</h1>
-
-            <form action="/courseindex" method="post">
-                <div class="form-course">
-                    <label for="crn" class="form-label">CRN</label>
-                    <input type="text" class="form-control" name="crn" id="crn" required>
-                </div>
-                
-
-                <div class="form-course">
-                    <label for="subject" class="form-label">subject</label>
-                    <input type="text" class="form-control" name="subject" id="subject" required>
-                </div>
-                <div class="form-course">
-                    <label for="course" class="form-label">Course</label>
-                    <input type="text" class="form-control" name="course" id="course" required>
-                </div>
-                <div class="form-course">
-                    <label for="mode" class="form-label">Instruction Mode</label>
-                    <input type="text" class="form-control" name="mode" id="mode" required>
-                </div>
-                <div class="form-course">
-                    <label for="instructor" class="form-label">Instructor</label>
-                    <input type="text" class="form-control" name="instructor" id="instructor" required>
-                </div>
-                <div class="form-course">
-                    <label for="daysLocation" class="form-label">Days & Locations</label>
-                    <input type="text" class="form-control" name="daysLocation" id="daysLocation" required>
-                </div>
-                <div class="form-course">
-                    <label for="dates" class="form-label">Dates</label>
-                    <input type="date" class="form-control" name="dates" id="dates" required>
-                </div>
-                <div class="form-course">
-                    <label for="credits" class="form-label">Credits</label>
-                    <input type="number" class="form-control" name="credits" id="credits" required>
-                </div>
-                <div class="form-course">
-                    <label for="campus" class="form-label">Campus</label>
-                    <input type="text" class="form-control" name="campus" id="campus" required>
-                </div>
-
-                <button>Add</button>
-            </form>
-        
-    
-        </div>
-    </section>
+    <%- include('./partials/create.ejs')%>
 
 </body>
 </html>

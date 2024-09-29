@@ -1,8 +1,11 @@
 const express = require('express');
+const ejs = require('ejs');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser')
-const Course = require('./models/courses')
+const bodyParser = require('body-parser');
+const Course = require('./models/courses');
+
+
 
 
 const app = express();
@@ -47,9 +50,11 @@ app.get('/courseindex', (req, res) => {
 
 
 
-app.post('/courseindex', (req, res) => {
-    const course = new Course(req.body);
 
+
+app.post('/courseindex', (req, res) => {
+    const course = new Course;
+    res.send(req.body)
     course.save()
         .then((result) => {
             res.redirect('/courseindex');
@@ -59,12 +64,5 @@ app.post('/courseindex', (req, res) => {
         })
 })
 
-app.get('/courses', (req, res) => {
-    Course.find().sort({ createdAt: -1})
-        .then((result) => {
-            res.render('courseindex', {courses: result})
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-})
+
+

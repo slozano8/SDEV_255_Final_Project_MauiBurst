@@ -14,7 +14,7 @@ const courseSchema = new schema({
         type: Number,
         required: true
     },
-    Mode: {
+    mode: {
         type: String,
         required: true
     },
@@ -34,12 +34,12 @@ const courseSchema = new schema({
         type: Number,
         required: true
     },
-    campus: {
+    description: {
         type: String,
         required: true
     }
 
 }, { timestamps: true});
 
-const Course = mongoose.model('Courses', courseSchema);
+const Course = mongoose.model('Course', courseSchema);
 module.exports = Course;
