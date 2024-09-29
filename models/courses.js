@@ -3,45 +3,43 @@ const schema = mongoose.Schema;
 
 const courseSchema = new schema({
     crn: {
-        type: integer,
-        require: true
+        type: Number ,
+        required: true
     },
-    subject: {
+    subject:  {
         type: String,
-        require: true
+        required: true
     },
     course: {
-        type: integer,
-        require: true
+        type: Number,
+        required: true
     },
     Mode: {
         type: String,
-        require: true
-
+        required: true
     },
     instructor: {
         type: String,
-        require: true
+        required: true
     },
     daysLocation: {
         type: String,
-        require: true
+        required: true
     },
     dates: {
         type: Date,
-        require: true
+        required: true
     },
     credits: {
-        type: integer,
-        require: true
+        type: Number,
+        required: true
     },
     campus: {
         type: String,
-        require: true
+        required: true
     }
-
 
 }, { timestamps: true});
 
-const courses = mongoose.model('courses', courseSchema);
-module.exports = courses;
+const Course = mongoose.model('Courses', courseSchema);
+module.exports = Course;

@@ -1,6 +1,9 @@
 const express = require('express');
+const morgan = require('morgan');
 const mongoose = require('mongoose');
-const courses = require('./models/courses')
+const bodyParser = require('body-parser')
+const Course = require('./models/courses')
+
 
 const app = express();
 
@@ -12,7 +15,9 @@ mongoose.connect(dbURI, {useNewURLParser: true, useUnifiedTopology: true })
 app.set('view engine', 'ejs');
 
 app.use('/img',express.static('img'));
+app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.get('/', (req, res) => {
@@ -35,30 +40,31 @@ app.get('/instructors', (req, res) => {
     res.render('instructors');
 });
 
-app.get('/courses', (req, res) => {
-    courses.find().sort({ createdAt: -1})
-        .then((result) => {
-            res.render('index', { title: 'All Courses', courses: result})
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-})
-
-app.post('/courseindex', (req, res) => {
-    const courses = new courses(req.body);
-
-    courses.save()
-        .then((result) => {
-            res.redirect('/courseindex');
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-});
 
 app.get('/courseindex', (req, res) => {
     res.render('courseindex')
 });
 
 
+
+app.post('/courseindex', (req, res) => {
+    const course = new Course(req.body);
+
+    course.save()
+        .then((result) => {
+            res.redirect('/courseindex');
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+})
+
+app.get('/courses', (req, res) => {
+    Course.find().sort({ createdAt: -1})
+        .then((result) => {
+            res.render('courseindex', {courses: result})
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+})
