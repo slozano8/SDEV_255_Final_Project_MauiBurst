@@ -29,8 +29,8 @@ app.get('/', (req, res) => {
     res.render('about', {title: 'Home'});
 });
 
-app.get('/index', (req, res) => {
-    res.render('index', {title: 'Schedule Builder'});
+app.get('/buildSchedule', (req, res) => {
+    res.render('buildSchedule', {title: 'Schedule Builder'});
 });
 
 app.get('/shoppingCart', (req, res) => {
