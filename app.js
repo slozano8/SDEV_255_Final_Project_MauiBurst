@@ -4,8 +4,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const Course = require('./models/courses');
-const { CONNREFUSED } = require('dns');
-const { title } = require('process');
+
 
 
 
@@ -27,7 +26,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.get('/', (req, res) => {
-    res.render('index', {title: 'Home'});
+    res.render('about', {title: 'Home'});
+});
+
+app.get('/index', (req, res) => {
+    res.render('index', {title: 'Schedule Builder'});
 });
 
 app.get('/shoppingCart', (req, res) => {
