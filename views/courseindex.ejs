@@ -25,11 +25,11 @@
                 </thead>
             </table>
             
-           <% if (Course.length > 0) {%>
-                <% Course.forEach(Course => { %>
-                    <a href="/Courses/<%= Course._id %>">
-                        <h3><%= Course.crn %></h3>
-                        <p><%= Course.subject %></p>
+           <% if (courses.length > 0) {%>
+                <% courses.forEach(course => { %>
+                    <a href="/courses/<%= course._id %>">
+                        <h3><%= course.crn %></h3>
+                        <p><%= course.subject %></p>
                     </a>
                 <% })%>
                

@@ -11,19 +11,23 @@ const Course = require('./models/courses');
 
 const app = express();
 
-const dbURI = 'mongodb+srv://Maui_Burst:SDEV123@nodes-tutorial.w4fan.mongodb.net/'
+//mongodb
+const dbURI = 'mongodb+srv://Maui_Burst:SDEV123@nodes-tutorial.w4fan.mongodb.net/Maui_Burst'
 mongoose.connect(dbURI, {useNewURLParser: true, useUnifiedTopology: true })
     .then((result) => app.listen(3030))
     .catch((err) => console.log(err));
 
 app.set('view engine', 'ejs');
 
-app.use('/img',express.static('img'));
+//middleware
+app.use('/public',express.static('public'));
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(express.urlencoded({ extended: true}));
+
 app.use(bodyParser.urlencoded({extended: true}));
 
+
+//page rountes
 
 app.get('/', (req, res) => {
     res.render('about', {title: 'Home'});
@@ -48,9 +52,7 @@ app.get('/instructors', (req, res) => {
 
 
 app.get('/courseindex', (req, res) => {
-    const Course = [];
-
-   res.render('courseindex', {title: 'Course Index', Course});
+     res.render('courseindex', {title: 'Course Index', Course});
 });
 
 app.get('/help', (req, res) => {
@@ -59,10 +61,10 @@ app.get('/help', (req, res) => {
 
 // courses routes
 
-app.get('/courseindex', (req, res) => {
+app.get('/instructors', (req, res) => {
     Course.find().sort({ createdAt: -1})
         .then((result) => {
-            res.render('/courseindex', {title: 'Course Catalog', Course: result})
+            res.render('/courseindex', {title: 'Course Catalog', courses: result})
         })
         .catch((err) => {
             console.log(err);
