@@ -61,6 +61,10 @@ app.get('/help', (req, res) => {
 
 // courses routes
 
+function insertPostData(){
+    post.insertMany
+}
+
 app.get('/instructors', (req, res) => {
     Course.find().sort({ createdAt: -1})
         .then((result) => {
