@@ -83,7 +83,7 @@ app.post('/courseindex', (req, res) => {
         })
 });
 
-app.get('/courses/:id', (req, res) => {
+app.get('/courseindex/:id', (req, res) => {
     const id = req.params.id;
     Course.findById(id)
         .then(result => {
@@ -96,7 +96,7 @@ app.get('/courses/:id', (req, res) => {
 
 });
 
-app.delete('/courses/:id', (req, res) => {
+app.delete('/courseindex/:id', (req, res) => {
     const id = req.params.id;
 
     Course.findByIdAndDelete(id)
