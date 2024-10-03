@@ -24,16 +24,6 @@
                     </tr>
                 </thead>
             </table>
-            
-           <% if (courses.length > 0) {%>
-                <% courses.forEach(course => { %>
-                    <a href="/courseindex/<%= courseindex._id %>">
-                        <h3><%= course.crn %></h3>
-                        <p><%= course.subject %></p>
-                    </a>
-                <% })%>
-               
-            <% } %>
            
         </div>
         

@@ -59,21 +59,19 @@ app.get('/help', (req, res) => {
     res.render('help', {title: 'help'});
 });
 
-// courses routes
-
-
+//courses route
 app.get('/instructors', (req, res) => {
     Course.find().sort({ createdAt: -1})
         .then((result) => {
-            res.render('/courseindex', {title: 'Course Catalog', courses: result})
+            res.render('/instructors', {title: 'Course Catalog', courses: result})
         })
         .catch((err) => {
             console.log(err);
         })
 });
 
-app.post('/courseindex', (req, res) => {
-    const course = new Course(req.body);
+app.post('/instructors', (req, res) => {
+    const course = new Course(req.body.Course);
 
     course.save()
         .then((result) => {
@@ -84,7 +82,7 @@ app.post('/courseindex', (req, res) => {
         })
 });
 
-app.get('/courseindex/:id', (req, res) => {
+app.get('/instructors/:id', (req, res) => {
     const id = req.params.id;
     Course.findById(id)
         .then(result => {
@@ -97,6 +95,7 @@ app.get('/courseindex/:id', (req, res) => {
 
 });
 
+
 app.delete('/courseindex/:id', (req, res) => {
     const id = req.params.id;
 
@@ -108,6 +107,10 @@ app.delete('/courseindex/:id', (req, res) => {
             console.log(err)
         })
 })
+
+
+
+
 
 
 
