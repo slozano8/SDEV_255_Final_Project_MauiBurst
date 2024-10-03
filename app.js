@@ -13,7 +13,7 @@ const app = express();
 
 //mongodb
 const dbURI = 'mongodb+srv://Maui_Burst:SDEV123@nodes-tutorial.w4fan.mongodb.net/Maui_Burst'
-mongoose.connect(dbURI, {useNewURLParser: true, useUnifiedTopology: true })
+mongoose.connect(dbURI, { useNewURLParser: true, useUnifiedTopology: true })
     .then((result) => app.listen(3030))
     .catch((err) => console.log(err));
 
@@ -60,17 +60,17 @@ app.get('/help', (req, res) => {
 });
 
 //courses route
-app.get('/instructors', (req, res) => {
+app.get('/course', (req, res) => {
     Course.find().sort({ createdAt: -1})
         .then((result) => {
-            res.render('/instructors', {title: 'Course Catalog', courses: result})
+            res.render('/courseindex', {title: 'Course Catalog', courses: result})
         })
         .catch((err) => {
             console.log(err);
         })
 });
 
-app.post('/instructors', (req, res) => {
+app.post('/course', (req, res) => {
     const course = new Course(req.body.Course);
 
     course.save()
@@ -82,7 +82,7 @@ app.post('/instructors', (req, res) => {
         })
 });
 
-app.get('/instructors/:id', (req, res) => {
+app.get('/course/:id', (req, res) => {
     const id = req.params.id;
     Course.findById(id)
         .then(result => {
@@ -96,7 +96,7 @@ app.get('/instructors/:id', (req, res) => {
 });
 
 
-app.delete('/courseindex/:id', (req, res) => {
+app.delete('/courses/:id', (req, res) => {
     const id = req.params.id;
 
     Course.findByIdAndDelete(id)
