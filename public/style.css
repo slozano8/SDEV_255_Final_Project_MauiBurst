@@ -162,3 +162,19 @@ tbody tr:nth-child(odd) {
 .btn-add-course:hover {
     background-color: #ffffff; 
 }
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  .card {
+    width: 400px;
+    padding: 2em;
+    border: 7px solid #e5c939;
+    border-radius: 10px;
+    box-shadow: 0   
+   2px 5px rgba(0, 0, 0, 0.1);
+  }

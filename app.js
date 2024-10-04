@@ -4,18 +4,23 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const Course = require('./models/courses');
-
-
-
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const User = require('./models/user');
 
 
 const app = express();
+const port = 3000; 
 
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
 //mongodb
-const dbURI = 'mongodb+srv://Maui_Burst:SDEV123@nodes-tutorial.w4fan.mongodb.net/Maui_Burst'
-mongoose.connect(dbURI, {useNewURLParser: true, useUnifiedTopology: true })
-    .then((result) => app.listen(3030))
-    .catch((err) => console.log(err));
+//const dbURI = 'mongodb+srv://Maui_Burst:SDEV123@nodes-tutorial.w4fan.mongodb.net/Maui_Burst'
+//mongoose.connect(dbURI, {useNewURLParser: true, useUnifiedTopology: true })
+    //.then((result) => app.listen(3030))
+    //.catch((err) => console.log(err));
+
 
 app.set('view engine', 'ejs');
 
@@ -26,12 +31,24 @@ app.use(morgan('dev'));
 
 app.use(bodyParser.urlencoded({extended: true}));
 
+//Login Middleware
+const isAuthenticated = (req, res, next) => {
+    if (req.isAuthenticated()) {
+      return next();
+    }
+    res.redirect('/login');
+  };
 
-//page rountes
+  app.get('/dashboard', isAuthenticated, (req, res) => {
+    // Dashboard content
+  });
+
+//page routes
 
 app.get('/', (req, res) => {
     res.render('about', {title: 'Home'});
 });
+
 
 app.get('/buildSchedule', (req, res) => {
     res.render('buildSchedule', {title: 'Schedule Builder'});
@@ -110,8 +127,27 @@ app.delete('/courseindex/:id', (req, res) => {
 })
 
 
+//LOGIN PAGE: ROUTES
+app.get('/views/login.ejs', (req, res) => {
+    res.render('login.ejs');
+  
+    if (role === 'student') {
+        //Handle students login logic
+      } else if (role === 'teacher') {
+        // Handle teacher login logic
+      } else {
+        // Handle invalid role
+      }
+    });
 
+ app.post('//views/login.ejs', passport.authenticate('local', {
+   successRedirect: '/dashboard',
+    failureRedirect: '/login'
+  }));
 
+//REGISTER ROUTE
+app.post('/views/register.ejs', (req, res) => {
+    res.render('register.ejs') });
 
-
-
+//MONGODB CONNECTIONS FOR LOGIN IN COMMAND PALLET
+//mongodb+srv://db_NewOne:db_mbCollege@nodejs.qx72q.mongodb.net/?retryWrites=true&w=majority&appName=NodeJs//

@@ -25,15 +25,20 @@
                 </thead>
             </table>
             
-           <% if (courses.length > 0) {%>
-                <% courses.forEach(course => { %>
-                    <a href="/courseindex/<%= courseindex._id %>">
+            <% if (courses.length > 0) { %>
+                <ul>
+                  <% courses.forEach(course => { %>
+                    <li>
+                      <a href="/courseindex/<%= course._id %>">
                         <h3><%= course.crn %></h3>
                         <p><%= course.subject %></p>
-                    </a>
-                <% })%>
-               
-            <% } %>
+                      </a>
+                    </li>
+                  <% }) %>
+                </ul>
+              <% } else { %>
+                <p>No courses found.</p>
+              <% } %>
            
         </div>
         

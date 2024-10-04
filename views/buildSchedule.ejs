@@ -3,8 +3,26 @@
 <body>
     <%- include('./partials/nav.ejs') %> 
     <section class="text-light p-5 text-center mt-5">
-        <h1>coming soon!</h1>
     </section>>
+    <link rel="stylesheet" href="style.css">
 
+    <div class="container">
+  <form id="program-form">
+    <h2>Select Programs</h2>
+    <div class="card">
+      <label><input type="checkbox" name="programs" value="program1"> English-101</label><br>
+      <label><input type="checkbox" name="programs" value="program2"> Public Speech-120</label><br>
+      <label><input type="checkbox" name="programs" value="program1"> SDV-130</label><br>
+      <label><input type="checkbox" name="programs" value="program2"> SDV 150</label><br>
+      <label><input type="checkbox" name="programs" value="program1"> SDV 165</label><br>
+      <label><input type="checkbox" name="programs" value="program2"> sdv 200</label><br>
+      </div>
+      <br>
+    <button type="submit">Add to Cart</button>
+  </form>
+  <script src="script.js"></script>
+</div>
+</body>
+</html>
 </body>
 </html>
