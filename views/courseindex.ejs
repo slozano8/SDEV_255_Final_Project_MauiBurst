@@ -30,21 +30,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% course.forEach((row, courseindex) => { %>
+                    <% if (Array.isArray(course)) { %>
+                        <% course.forEach(course=> { %>
                         
-                        <tr>
-                            <th><%= row.crn %></th>
-                            <th><%= row.subject %></th>
-                            <th><%= row.course %></th>
-                            <th><%= row.mode %></th>
-                            <th><%= row.instructor %></th>
-                            <th><%= row.daysLocation %></th>
-                            <th><%= row.date %></th>
-                            <th><%= row.credits %></th>
-                            <th><%= description %></th>
+                            <tr>
+                                <th><%= course.crn %></th>
+                                <th><%= course.subject %></th>
+                                <th><%= course.course %></th>
+                                <th><%= course.mode %></th>
+                                <th><%= course.instructor %></th>
+                                <th><%= course.daysLocation %></th>
+                                <th><%= course.date %></th>
+                                <th><%= couse.credits %></th>
+                                <th><%= course.description %></th>
                             
-                        </tr>
-                    <% }) %>
+                            </tr>
+                        <% }); %>
+                        <% } %>
                 </tbody>
             </table>
            
