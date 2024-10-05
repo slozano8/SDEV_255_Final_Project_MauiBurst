@@ -1,7 +1,4 @@
 const express = require('express');
-<<<<<<< HEAD
-const mongoose = require('mongoose');
-=======
 const ejs = require('ejs');
 const morgan = require('morgan');
 const mongodb = require('mongodb');
@@ -10,7 +7,6 @@ const bodyParser = require('body-parser');
 const Course = require('./models/courses');
 
 
->>>>>>> ba97baa90411e2ba4fd47c04af5f6285c6c216dc
 
 const app = express();
 
@@ -29,17 +25,14 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended: true}));
 app.use(bodyParser.urlencoded({extended: true}));
 
-<<<<<<< HEAD
 // database connection
 const dbURI = 'mongodb://localhost:27017/cluster2';
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
   .then((result) => app.listen(3030))
   .catch((err) => console.log(err));
 
-=======
 
 //page rountes
->>>>>>> ba97baa90411e2ba4fd47c04af5f6285c6c216dc
 
 app.get('/', (req, res) => {
     res.render('about', {title: 'Home'});
