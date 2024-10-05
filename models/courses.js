@@ -3,16 +3,18 @@ const schema = mongoose.Schema;
 
 const courseSchema = new schema({
     crn: {
-        type: Number ,
+        type: String,
         required: true
+        
     },
     subject:  {
         type: String,
         required: true
     },
     course: {
-        type: Number,
+        type: String,
         required: true
+        
     },
     mode: {
         type: String,
@@ -26,13 +28,15 @@ const courseSchema = new schema({
         type: String,
         required: true
     },
-    dates: {
-        type: Date,
+    date: {
+        type: String,
         required: true
+        
     },
     credits: {
-        type: Number,
+        type: String,
         required: true
+    
     },
     description: {
         type: String,

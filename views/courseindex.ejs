@@ -29,6 +29,23 @@
                         
                     </tr>
                 </thead>
+                <tbody>
+                    <% course.forEach((row, courseindex) => { %>
+                        
+                        <tr>
+                            <th><%= row.crn %></th>
+                            <th><%= row.subject %></th>
+                            <th><%= row.course %></th>
+                            <th><%= row.mode %></th>
+                            <th><%= row.instructor %></th>
+                            <th><%= row.daysLocation %></th>
+                            <th><%= row.date %></th>
+                            <th><%= row.credits %></th>
+                            <th><%= description %></th>
+                            
+                        </tr>
+                    <% }) %>
+                </tbody>
             </table>
            
         </div>

@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: true}));
 app.use(bodyParser.urlencoded({extended: true}));
-
+app.use(bodyParser.json());
 
 //page rountes
 
@@ -54,7 +54,7 @@ app.get('/instructors', (req, res) => {
 
 
 app.get('/courseindex', (req, res) => {
-     res.render('courseindex', {title: 'Course Index', Course});
+     res.render('courseindex', {title: 'Course Index'});
 });
 
 app.get('/help', (req, res) => {
@@ -67,12 +67,12 @@ app.get('/course', (req, res) => {
 
 //courses route
 
-app.post('/course', (req, res) => {
+app.post('/course', (req, res) =>{
     const course = new Course(req.body);
-
+    
     course.save()
         .then((result) => {
-            res.redirect('/courseindex');
+            res.json({redirect:'/courseindex'});
         })
         .catch((err) =>{
             console.log(err);
@@ -80,10 +80,10 @@ app.post('/course', (req, res) => {
         
 });
 
-app.get('/course', (req, res) => {
+app.get('courseindex', (req, res) => {
     Course.find().sort({ createdAt: -1})
         .then((result) => {
-            res.render('/courseindex', {title: 'Course Catalog', courses: result})
+            res.render('/courseindex', {title: 'Course Catalog', courses: courses})
         })
         .catch((err) => {
             console.log(err);
@@ -94,7 +94,7 @@ app.get('/course :id', (req, res) => {
     const id = req.params.id;
     Course.findById(id)
         .then(result => {
-            render('details', { course: result, title:'Course Detials '});
+            render('courseindex', { course: result, title:'Course Detials '});
         })
         .catch(err => {
             console.log(err)
@@ -109,7 +109,7 @@ app.delete('/course :id', (req, res) => {
 
     Course.findByIdAndDelete(id)
         .then((result) => {
-            res.json({redirect:'/courseindex'})
+          res.json({redirect:'/courseindex'})
         })
         .catch(err => {
             console.log(err)
