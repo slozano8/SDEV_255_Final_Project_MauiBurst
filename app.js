@@ -25,13 +25,6 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended: true}));
 app.use(bodyParser.urlencoded({extended: true}));
 
-// database connection
-const dbURI = 'mongodb://localhost:27017/cluster2';
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
-  .then((result) => app.listen(3030))
-  .catch((err) => console.log(err));
-
-
 //page rountes
 
 app.get('/', (req, res) => {
