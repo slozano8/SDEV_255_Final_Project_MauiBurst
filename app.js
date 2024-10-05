@@ -9,10 +9,10 @@ const app = express();
 
 // MongoDB connection
 const dbURI = 'mongodb+srv://Maui_Burst:SDEV123@nodes-tutorial.w4fan.mongodb.net/Maui_Burst?retryWrites=true&w=majority';
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(dbURI)
     .then((result) => app.listen(3030))
     .catch((err) => console.log(err));
-
+    
 app.set('view engine', 'ejs');
 
 // Middleware
