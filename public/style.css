@@ -1,0 +1,164 @@
+body {
+    background-color: #2B8813;
+    color: #2B8813;
+}
+
+.navbar {
+    background-color: #1D5B0D;
+}
+
+.navbar a {
+    color: #ffffff;
+}
+
+.navbar a:hover {
+    color: #f39c12;
+}
+
+.btn-sign-in {
+    background-color: #e5c939; /*sign in*/
+    color: #343a40; 
+    border: none; 
+}
+
+.btn-sign-in:hover {
+    background-color: #ffffff; 
+}
+
+
+section {
+    padding: 2rem 0;
+}
+
+h1, h3 {text-align: center;
+    color: #1D5B0D; 
+}
+
+h2 {text-align: center;
+    color: #ffffff; 
+
+}
+
+h4 {	font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem; /* Space below the heading */
+}
+
+p { color: #1D5B0D; 
+    text-align: center; /* Center the text */
+    max-width: 600px; /* Limit the width for better readability */
+    line-height: 1.5; /* Add line height for spacing between lines */
+    margin: 0 auto; /* Center the paragraph */
+    padding: 0 1rem; /* Optional: add horizontal padding */
+}
+
+p1 {
+    color: #fbfcfc; 
+}
+
+
+.image-section {
+    background-color: #e5c939;
+    display: flex; 
+    align-items: center; 
+    padding: 5rem; 
+    margin-top: 80px; /* NEEDED space*/
+}
+
+.image-container {
+    flex: 1; 
+}
+
+.centered-image {
+    width: 100%;  
+    height: auto;
+	
+}
+
+.text-container {
+    flex: 1; 
+    text-align: right;
+}
+
+.card {
+    border: none;
+}
+
+.card.bg-dark {
+    background-color: #27ae60; 
+}
+
+.card.bg-secondary {
+    background-color: #f39c12;
+}
+
+.card.bg-light {
+    background-color: #ecf0f1;
+}
+
+
+.btn-dark {
+    background-color: #34495e;
+    color: #ffffff;
+}
+
+.btn-light {
+    background-color: #ecf0f1;
+    color: #343a40;
+}
+
+.btn-primary {
+    background-color: #1D5B0D; 
+    color: #ffffff; 
+}
+
+.btn-primary:hover {
+    background-color: #f39c12; 
+    color: #ffffff; 
+}
+
+footer {
+    background-color: #1D5B0D; 
+    color: #ffffff;
+}
+
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f9f9f9; 
+}
+
+table th, table td {
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #1D5B0D; /* Dark green for the header */
+	text-align: center;
+    color: #1D5B0D;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #ffffff; /* White for even rows */
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f2f2f2; /* Light gray for odd rows */
+}
+
+.btn-add-course {
+    background-color: #e5c939;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.btn-add-course:hover {
+    background-color: #ffffff; 
+}
