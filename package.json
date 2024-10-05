@@ -5,18 +5,14 @@
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.21.0",
-<<<<<<< HEAD
     "lodash": "^4.17.21",
     "mongoose": "^8.7.0"
-=======
     "express-ejs-layouts": "^2.5.1",
     "express-handlebars": "^8.0.1",
     "express-session": "^1.18.0",
     "express-validator": "^7.2.0",
     "method-override": "^3.0.0",
     "mongodb": "^6.9.0",
-    "mongoose": "^8.7.0",
     "morgan": "^1.10.0"
->>>>>>> ba97baa90411e2ba4fd47c04af5f6285c6c216dc
   }
 }
