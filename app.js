@@ -8,8 +8,9 @@ const Course = require('./models/courses');
 const app = express();
 
 // MongoDB connection
-const dbURI = '';
-mongoose.connect(dbURI)
+const dbURI = 'mongodb+srv://Maui_Burst:SDEV123@nodes-tutorial.w4fan.mongodb.net/Maui_Burst?retryWrites=true&w=majority';
+
+mongoose.connect(dbURI, { useUnifiedTopology: true })
     .then((result) => app.listen(3030, () => console.log('Server running on port 3030')))
     .catch((err) => console.log('Connection error:', err));
 
