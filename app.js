@@ -47,20 +47,21 @@ app.get('/instructors', (req, res) => {
 
 app.get('/courseindex', (req, res) => {
     
-     res.render('courseindex', {title: 'courseindex', course: Course});
+    res.render('courseindex', {title: 'course index', course: Course});
 });
 
 app.get('/help', (req, res) => {
     res.render('help', { title: 'Help' });
 });
 
-// New course route
-app.get('/course/new', (req, res) => {
-    res.render('instructors', { title: 'New Course' });
-});
 
 //courses route
-app.get('/course/new', (req, res) => {
+app.get('/course', (req, res) => {
+    res.render('/courseindex', {title: 'Course Catalog'})
+});
+
+
+app.get('/course', (req, res) => {
     Course.find().sort({ createdAt: -1})
         .then((result) => {
             res.render('/courseindex', {title: 'Course Catalog', course: result})
@@ -70,7 +71,7 @@ app.get('/course/new', (req, res) => {
         });
 });
 
-app.post('/course/new', (req, res) => {
+app.post('/course', (req, res) => {
     const course = new Course(req.body);
 
     course.save()
@@ -85,7 +86,7 @@ app.post('/course/new', (req, res) => {
 
 
 // Get course details
-app.get('/course/new/:id', (req, res) => {
+app.get('/course/:id', (req, res) => {
     const id = req.params.id;
     Course.findById(id)
         .then(result => {
@@ -97,7 +98,7 @@ app.get('/course/new/:id', (req, res) => {
 });
 
 // Delete course
-app.delete('/course/new/:id', (req, res) => {
+app.delete('/course/:id', (req, res) => {
     const id = req.params.id;
     Course.findByIdAndDelete(id)
         .then((result) => {
