@@ -7,7 +7,12 @@ app.set('view engine', 'ejs');
 
 app.use('/img',express.static('img'));
 
-app.listen(3030);
+// database connection
+const dbURI = 'mongodb://localhost:27017/cluster2';
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
+  .then((result) => app.listen(3030))
+  .catch((err) => console.log(err));
+
 
 app.get('/', (req, res) => {
     res.render('index');
