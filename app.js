@@ -10,9 +10,6 @@ const bodyParser = require('body-parser');
 const Course = require('./models/courses');
 
 
-
-
-
 >>>>>>> ba97baa90411e2ba4fd47c04af5f6285c6c216dc
 
 const app = express();
