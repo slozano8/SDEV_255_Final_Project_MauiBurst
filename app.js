@@ -34,9 +34,15 @@ app.get('/about', (req, res) => {
     res.render('about', { title: 'Home' });
 });
 
-app.get('/buildSchedule', (req, res) => {
-    res.render('buildSchedule', { title: 'Schedule Builder' });
+app.get('/buildSchedule', async (req, res) => {
+    try {
+        const courses = await Course.find();
+        res.render('buildSchedule', { course: courses, title: 'Build Schedule' });
+    } catch (err) {
+        return res.status(500).send(err);
+    }
 });
+
 
 app.get('/shoppingCart', (req, res) => {
     res.render('ShoppingCart', { title: 'Shopping Cart' });

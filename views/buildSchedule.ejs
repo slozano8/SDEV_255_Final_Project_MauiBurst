@@ -1,10 +1,57 @@
+<!DOCTYPE html>
 <html lang="en">
 <%- include('./partials/head.ejs') %>
+<link rel="stylesheet" href="/public/style.css">
 <body>
     <%- include('./partials/nav.ejs') %> 
-    <section class="text-light p-5 text-center mt-5">
-        <h1>coming soon!</h1>
-    </section>>
 
+    <h2 class="text-center">Course Catalog</h2>
+
+    <section class="container p-5">
+        <h3 class="text-center co">Current Course Catalog:</h3>
+        <table class="table table-bordered table-striped" id="courseTable">
+            <thead>
+                <tr>
+                    <th>CRN</th>
+                    <th>Subject</th>
+                    <th>Course</th>
+                    <th>Instructor</th>
+                    <th>Days & Location</th>
+                    <th>Date</th>
+                    <th>Credits</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (Array.isArray(course)) { %>
+                    <% course.forEach(course => { %>
+                        <tr id="course-<%= course._id %>">
+                            <td><%= course.crn %></td>
+                            <td><%= course.subject %></td>
+                            <td><%= course.course %></td>
+                            <td><%= course.instructor %></td>
+                            <td><%= course.daysLocation %></td>
+                            <td><%= course.date %></td>
+                            <td><%= course.credits %></td>
+                            <td><%= course.description %></td>
+                            <td style="width: 200px;">
+                                <button class="btn btn" onclick="dropCourse('<%= course._id %>')">Drop</button>
+                                <button class="btn btn" onclick="addClass('<%= course._id %>')">Add </button>
+                            </td>
+                        </tr>
+                    <% }); %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="9" class="text-center">No courses added yet</td>
+                    </tr>
+                <% } %>
+            </tbody>
+            
+        </table>
+    </section>
+
+    
+
+    <%- include('./partials/footer.ejs') %>
 </body>
 </html>
