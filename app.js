@@ -124,7 +124,7 @@ app.delete('/course/:id', (req, res) => {
         })
         .catch(err => {
             console.log(err);
-            res.status(500).json({ message: 'Error deleting course' });
+            res.status(500);
         });
 });
 
