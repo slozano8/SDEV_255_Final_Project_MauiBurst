@@ -115,6 +115,19 @@ app.get('/create', (req, res) => {
     res.render('create', { title: 'Create Course' });
 });
 
+//delete
+app.delete('/course/:id', (req, res) => {
+    const id = req.params.id;
+    Course.findByIdAndDelete(id)
+        .then(() => {
+            res.status(200).json({ message: 'Course deleted successfully' });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ message: 'Error deleting course' });
+        });
+});
+
 
 /*const { ensureTeacher, ensureStudent } = require('./middleware/authRoles');
 

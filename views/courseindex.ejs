@@ -26,7 +26,7 @@
             <tbody>
                 <% if (Array.isArray(course)) { %>
                     <% course.forEach(course => { %>
-                        <tr>
+                        <tr id="course-<%= course._id %>">
                             <td><%= course.crn %></td>
                             <td><%= course.subject %></td>
                             <td><%= course.course %></td>
@@ -35,14 +35,18 @@
                             <td><%= course.date %></td>
                             <td><%= course.credits %></td>
                             <td><%= course.description %></td>
+                            <td>
+                                <button class="btn btn-danger" onclick="deleteCourse('<%= course._id %>')">Delete</button>
+                            </td>
                         </tr>
                     <% }); %>
                 <% } else { %>
                     <tr>
-                        <td colspan="8" class="text-center">No courses have been added yet</td>
+                        <td colspan="9" class="text-center">No courses have been added yet</td>
                     </tr>
                 <% } %>
             </tbody>
+            
         </table>
     </section>
 
@@ -91,6 +95,27 @@
             </div>
         </form>
     </section>
+
+    <script>
+        function deleteCourse(id) {
+            fetch(`/course/${id}`, {
+                method: 'DELETE'
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Remove the row from the DOM
+                    const row = document.getElementById(`course-${id}`);
+                    if (row) {
+                        row.remove();
+                    }
+                } else {
+                    alert('Failed to delete course');
+                }
+            })
+            .catch(err => console.error(err));
+        }
+    </script>
+    
 
     <footer class="text-center p-4">
         <div class="container">
