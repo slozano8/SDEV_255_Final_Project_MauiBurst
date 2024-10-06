@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const Course = require('./models/courses');
 
+
 const app = express();
 
 // MongoDB connection
@@ -97,18 +98,13 @@ app.get('/course/:id', (req, res) => {
         });
 });
 
+//access create
 
-// Delete course
-
-const { ensureTeacher } = require('./middlewares/auth');
-
-app.delete('/course/:id', (req, res) => {
-    const id = req.params.id;
-    Course.findByIdAndDelete(id)
-        .then((result) => {
-            res.json({redirect:'/courseindex'})
-        })
-        .catch(err => {
-            console.log(err);
-        });
+app.get('/create', (req, res) => {
+    res.render('create', { title: 'Create Course' });
 });
+
+
+
+
+
