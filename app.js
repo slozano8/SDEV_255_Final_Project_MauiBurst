@@ -105,6 +105,30 @@ app.get('/create', (req, res) => {
 });
 
 
+/*const { ensureTeacher, ensureStudent } = require('./middleware/authRoles');
 
+//  only teachers can view courseindex page
+app.get('/courseindex', ensureTeacher, (req, res) => {
+    res.render('courseindex', { title: 'Create Course' });
+});
+
+// Delete course for teachers only
+app.delete('/course/:id', ensureTeacher, (req, res) => {
+    const id = req.params.id;
+    Course.findByIdAndDelete(id).then(() => {
+        res.json({ redirect: '/courseindex' });
+    });
+});
+
+//Adding for teachers only
+
+app.post('/course', ensureTeacher, (req, res) => {
+    const newCourse = new Course(req.body); 
+    newCourse.save()
+        .then(() => {
+            res.json({ redirect: '/courseindex' });
+        });
+});
+*/
 
 
