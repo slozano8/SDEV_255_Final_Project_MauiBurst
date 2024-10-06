@@ -97,7 +97,11 @@ app.get('/course/:id', (req, res) => {
         });
 });
 
+
 // Delete course
+
+const { ensureTeacher } = require('./middlewares/auth');
+
 app.delete('/course/:id', (req, res) => {
     const id = req.params.id;
     Course.findByIdAndDelete(id)
