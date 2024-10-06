@@ -50,43 +50,50 @@ app.get('/instructors', (req, res) => {
     res.render('instructors', { title: 'Instructors view' });
 });
 
-app.get('/courseindex', (req, res) => {
-    
-    res.render('courseindex', {title: 'course index', course: Course});
-});
-
 app.get('/help', (req, res) => {
     res.render('help', { title: 'Help' });
 });
 
-
-//courses route
-app.get('/course', (req, res) => {
-    res.render('/courseindex', {title: 'Course Catalog'})
-});
-
-
-app.get('/course', (req, res) => {
-    Course.find().sort({ createdAt: -1})
-        .then((result) => {
-            res.render('/courseindex', {title: 'Course Catalog', course: result})
+app.get('/courseindex', (req, res) => {
+    Course.find().sort({ createdAt: -1 })
+        .then((courses) => {
+            res.render('courseindex', { title: 'Course Catalog', course: courses });
         })
         .catch((err) => {
             console.log(err);
+            res.status(500);
         });
 });
 
-app.post('/course', (req, res) => {
-    const course = new Course(req.body);
 
-    course.save()
+// Course creation route
+// Get all courses and show the course index page
+app.get('/courseindex', (req, res) => {
+    Course.find().sort({ createdAt: -1 })
         .then((result) => {
+            res.render('courseindex', { title: 'Course Catalog', course: result });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500);
+        });
+});
+
+// Handle adding a new course
+app.post('/courseindex', (req, res) => {
+    const course = new Course(req.body);
+    course.save()
+        .then(() => {
             res.redirect('/courseindex');
         })
         .catch((err) => {
             console.log(err);
+            res.status(400);
         });
 });
+
+
+
 
 
 

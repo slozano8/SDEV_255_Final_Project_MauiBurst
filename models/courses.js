@@ -16,10 +16,7 @@ const courseSchema = new schema({
         required: true
         
     },
-    mode: {
-        type: String,
-        required: true
-    },
+    
     instructor: {
         type: String,
         required: true
