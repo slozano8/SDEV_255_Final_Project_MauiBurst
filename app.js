@@ -30,6 +30,10 @@ app.get('/', (req, res) => {
     res.render('about', { title: 'Home' });
 });
 
+app.get('/about', (req, res) => {
+    res.render('about', { title: 'Home' });
+});
+
 app.get('/buildSchedule', (req, res) => {
     res.render('buildSchedule', { title: 'Schedule Builder' });
 });
