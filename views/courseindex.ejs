@@ -1,68 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('./partials/head.ejs') %>
+<link rel="stylesheet" href="/public/style.css">
 <body>
     <%- include('./partials/nav.ejs') %> 
 
-    <section class="text-light p-5 text-center mt-5">
-        <h4>course catalog</h4>
-    </section>
+    <h2 class="text-center">Course Catalog</h2>
 
-    <section id="learn" class="p-5">
-        <h2 class="text-center">Modify:</h2>
-        <div class="container">
-		<button id="addCourseBtn" class="btn btn-add-course mb-3">Add Course</button>
-
-           
-            <table class="table table-bordered" id="courseTable">
-                <thead>
+ 
+    <section class="container p-5">
+        <h3 class="text-center co">Current Course Catalog: </h3>
+        <table class="table table-bordered table-striped" id="courseTable">
+            <thead>
+                <tr>
+                    <th>CRN</th>
+                    <th>Subject</th>
+                    <th>Course</th>
+                    <th>Instructor</th>
+                    <th>Days & Location</th>
+                    <th>Date</th>
+                    <th>Credits</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (Array.isArray(course)) { %>
+                    <% course.forEach(course => { %>
+                        <tr>
+                            <td><%= course.crn %></td>
+                            <td><%= course.subject %></td>
+                            <td><%= course.course %></td>
+                            <td><%= course.instructor %></td>
+                            <td><%= course.daysLocation %></td>
+                            <td><%= course.date %></td>
+                            <td><%= course.credits %></td>
+                            <td><%= course.description %></td>
+                        </tr>
+                    <% }); %>
+                <% } else { %>
                     <tr>
-                        <th>CRN</th>
-                        <th>Subject</th>
-                        <th>Course</th>
-                        <th>Mode</th>
-                        <th>Instructor</th>
-                        <th>Days & Location</th>
-                        <th>Date</th>
-                        <th>Credits</th>
-                        <th>Description</th>
-                        
+                        <td colspan="8" class="text-center">No courses have been added yet</td>
                     </tr>
-                </thead>
-                <tbody>
-                    <% if (Array.isArray(course)) { %>
-                        <% course.forEach(course=> { %>
-                        
-                            <tr>
-                                <td><%= course.crn %></td>
-                                <td><%= course.subject %></td>
-                                <td><%= course.course %></td>
-                                <td><%= course.mode %></td>
-                                <td><%= course.instructor %></td>
-                                <td><%= course.daysLocation %></td>
-                                <td><%= course.date %></td>
-                                <td><%= couse.credits %></td>
-                                <td><%= course.description %></td>
-                            
-                            </tr>
-                        <% }); %>
-                        <% } %>
-                </tbody>
-            </table>
-           
-        </div>
-        
+                <% } %>
+            </tbody>
+        </table>
     </section>
 
-   
+    
+
+    <section class="container p-5">
+        <h3 class="text-center">Create Course:</h3>
+            <div class="form-group">
+                <label for="crn" class="form-label">CRN:</label>
+                <input type="number" id="crn" name="crn" class="form-control form-control-sm" required>
+            </div>
+            <div class="form-group">
+                <label for="subject" class="form-label">Subject:</label>
+                <input type="text" id="subject" name="subject" class="form-control form-control-sm" required>
+            </div>
+            <div class="form-group">
+                <label for="course" class="form-label">Course:</label>
+                <input type="number" id="course" name="course" class="form-control form-control-sm" required>
+            </div>
+            <div class="form-group">
+                <label for="instructor" class="form-label">Instructor:</label>
+                <input type="text" id="instructor" name="instructor" class="form-control form-control-sm" required>
+            </div>
+            <div class="form-group">
+                <label for="daysLocation" class="form-label">Days & Location:</label>
+                <input type="text" id="daysLocation" name="daysLocation" class="form-control form-control-sm" required>
+            </div>
+            <div class="form-group">
+                <label for="date" class="form-label">Date:</label>
+                <input type="date" id="date" name="date" class="form-control form-control-sm" required>
+            </div>
+            <div class="form-group">
+                <label for="credits" class="form-label">Credits:</label>
+                <input type="number" id="credits" name="credits" class="form-control form-control-sm" required>
+            </div>
+            <div class="form-group">
+                <label for="description" class="form-label">Description:</label>
+                <textarea id="description" name="description" class="form-control form-control-sm" required></textarea>
+            </div>
+            
+            <div class="text-center mb-4 mt-4">
+                <button type="submit" class="btn btn-primary">Add Course</button>
+                <button type="button" id="deleteCourseBtn" class="btn btn-danger ms-2">Delete Course</button>
+            </div>
+        </form>
+    </section>
 
     <footer class="text-center p-4">
         <div class="container">
             <p class="mb-0">2024 MB College</p>
         </div>
     </footer>
-
-   
-    
 </body>
 </html>
