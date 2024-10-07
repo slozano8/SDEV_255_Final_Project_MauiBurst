@@ -34,24 +34,10 @@ app.get('/', (req, res) => {
 app.get('/buildSchedule', async (req, res) => {
     try {
         const courses = await Course.find();
-        res.render('./teacherView/buildSchedule', { course: courses, title: 'Build Schedule' });
+        res.render('./studentView/buildSchedule', { course: courses, title: 'Build Schedule' });
     } catch (err) {
         return res.status(500).send(err);
     }
-});
-
-
-app.get('/shoppingCart', (req, res) => {
-    res.render('./studentView/ShoppingCart', { title: 'Shopping Cart' });
-});
-
-app.get('/currentSchedule', (req, res) => {
-    res.render('./studentView/currentSchedule', { title: 'Current Schedule' });
-});
-
-
-app.get('/help', (req, res) => {
-    res.render('help', { title: 'Help' });
 });
 
 app.get('/courseIndex', (req, res) => {
