@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 //page rountes
 
 app.get('/', (req, res) => {
-    res.render('about', { title: 'Home' });
+    res.render('index', { title: 'Home' });
 });
 
 
