@@ -60,7 +60,7 @@ app.get('/help', (req, res) => {
     res.render('help', { title: 'Help' });
 });
 
-app.get('/courseindex', (req, res) => {
+app.get('/courseIndex', (req, res) => {
     Course.find().sort({ createdAt: -1 })
         .then((courses) => {
             res.render('courseindex', { title: 'Course Catalog', course: courses });
@@ -90,7 +90,7 @@ app.post('/courseindex', (req, res) => {
     const course = new Course(req.body);
     course.save()
         .then(() => {
-            res.redirect('/courseindex');
+            res.redirect('../courseindex');
         })
         .catch((err) => {
             console.log(err);
