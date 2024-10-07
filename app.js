@@ -7,6 +7,10 @@ const Course = require('./models/courses');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/user');
+const router = express.Router();
+const {register,login} = require ('./controllers/userController');
+
+
 
 
 const app = express();
@@ -132,12 +136,10 @@ app.get('/views/login.ejs', (req, res) => {
     res.render('login.ejs');
   
     if (role === 'student') {
-        //Handle students login logic
+        res.redirect('/student-dashboard');
       } else if (role === 'teacher') {
-        // Handle teacher login logic
-      } else {
-        // Handle invalid role
-      }
+        res.redirect('/teacher-dashboard')
+      } 
     });
 
  app.post('//views/login.ejs', passport.authenticate('local', {
@@ -146,8 +148,10 @@ app.get('/views/login.ejs', (req, res) => {
   }));
 
 //REGISTER ROUTE
-app.post('/views/register.ejs', (req, res) => {
-    res.render('register.ejs') });
+router.post('/register', register);
+module.exports = router
 
+
+   
 //MONGODB CONNECTIONS FOR LOGIN IN COMMAND PALLET
 //mongodb+srv://db_NewOne:db_mbCollege@nodejs.qx72q.mongodb.net/?retryWrites=true&w=majority&appName=NodeJs//

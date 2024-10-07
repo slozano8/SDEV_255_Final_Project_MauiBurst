@@ -1,5 +1,10 @@
-exports.register = (req, res) => {
-    const { username, email, password } = req.body;
+const User = require('../models/user');
+const bcrypt = require('bcryptjs');
+
+
+exports.register = async (req, res) => {
+    const { username, password, } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
   
     // Validate user input
     if (!username || !email || !password) {
@@ -7,14 +12,14 @@ exports.register = (req, res) => {
     }
   
     // Check if user already exists
-    User.findOne({ email })
+    User.findOne({ username })
       .then(existingUser => {
         if (existingUser) {
-          return res.status(400).send('Email already exists');
+          return res.status(400).send('Username already exists');
         }
   
         // Create a new user
-        const newUser = new User({ username, email, password });
+        const newUser = new User({ username, password: password, role });
         newUser.save()
           .then(() => {
             res.redirect('/login'); // Redirect to login page after successful registration
