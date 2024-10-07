@@ -30,14 +30,11 @@ app.get('/', (req, res) => {
     res.render('about', { title: 'Home' });
 });
 
-app.get('/about', (req, res) => {
-    res.render('about', { title: 'Home' });
-});
 
 app.get('/buildSchedule', async (req, res) => {
     try {
         const courses = await Course.find();
-        res.render('buildSchedule', { course: courses, title: 'Build Schedule' });
+        res.render('./teacherView/buildSchedule', { course: courses, title: 'Build Schedule' });
     } catch (err) {
         return res.status(500).send(err);
     }
@@ -45,16 +42,13 @@ app.get('/buildSchedule', async (req, res) => {
 
 
 app.get('/shoppingCart', (req, res) => {
-    res.render('ShoppingCart', { title: 'Shopping Cart' });
+    res.render('./studentView/ShoppingCart', { title: 'Shopping Cart' });
 });
 
 app.get('/currentSchedule', (req, res) => {
-    res.render('currentSchedule', { title: 'Current Schedule' });
+    res.render('./studentView/currentSchedule', { title: 'Current Schedule' });
 });
 
-app.get('/instructors', (req, res) => {
-    res.render('instructors', { title: 'Instructors view' });
-});
 
 app.get('/help', (req, res) => {
     res.render('help', { title: 'Help' });
@@ -63,7 +57,7 @@ app.get('/help', (req, res) => {
 app.get('/courseIndex', (req, res) => {
     Course.find().sort({ createdAt: -1 })
         .then((courses) => {
-            res.render('courseindex', { title: 'Course Catalog', course: courses });
+            res.render('./teacherView/courseindex', { title: 'Course Catalog', course: courses });
         })
         .catch((err) => {
             console.log(err);
