@@ -94,9 +94,6 @@ app.post('/courseindex', (req, res) => {
 
 
 
-
-
-
 // Get course details
 app.get('/course/:id', (req, res) => {
     const id = req.params.id;
