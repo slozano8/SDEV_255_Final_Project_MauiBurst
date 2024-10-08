@@ -9,7 +9,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/user');
 const router = express.Router();
 const {register,login} = require ('./controllers/userController');
-
+const jwt = require('jsonwebtoken');
 
 
 

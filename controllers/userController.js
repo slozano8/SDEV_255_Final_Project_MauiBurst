@@ -1,6 +1,6 @@
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
-
+const { isJWT } = require('validator');
 
 exports.register = async (req, res) => {
     const { username, password, } = req.body;
