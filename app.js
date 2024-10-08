@@ -54,6 +54,7 @@ app.get('/buildSchedule', async (req, res) => {
     }
 });
 
+
 app.get('/courseIndex', (req, res) => {
     Course.find().sort({ createdAt: -1 })
         .then((courses) => {

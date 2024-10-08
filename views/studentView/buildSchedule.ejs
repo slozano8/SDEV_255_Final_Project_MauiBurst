@@ -3,55 +3,101 @@
 <%- include('../partials/head.ejs') %>
 <link rel="stylesheet" href="/public/style.css">
 <body>
+
     <%- include('../partials/studentNav.ejs') %> 
 
-    <h2 class="text-center">Course Catalog</h2>
-
+    <h1 style="text-align: center; font-size: 3rem;color: red; ">1234</h1>
+    <h2 style="color: rgb(254, 254, 254); text-align: center;">Course Catalog</h2>
     <section class="container p-5">
-        <h3 class="text-center co">Current Course Catalog:</h3>
-        <table class="table table-bordered table-striped" id="courseTable">
-            <thead>
-                <tr>
-                    <th>CRN</th>
-                    <th>Subject</th>
-                    <th>Course</th>
-                    <th>Instructor</th>
-                    <th>Days & Location</th>
-                    <th>Date</th>
-                    <th>Credits</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% if (Array.isArray(course)) { %>
-                    <% course.forEach(course => { %>
-                        <tr id="course-<%= course._id %>">
-                            <td><%= course.crn %></td>
-                            <td><%= course.subject %></td>
-                            <td><%= course.course %></td>
-                            <td><%= course.instructor %></td>
-                            <td><%= course.daysLocation %></td>
-                            <td><%= course.date %></td>
-                            <td><%= course.credits %></td>
-                            <td><%= course.description %></td>
-                            <td style="width: 200px;">
-                                <button class="btn btn" onclick="dropCourse('<%= course._id %>')">Drop</button>
-                                <button class="btn btn" onclick="addClass('<%= course._id %>')">Add </button>
-                            </td>
-                        </tr>
-                    <% }); %>
-                <% } else { %>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped" id="courseTable">
+                <thead>
                     <tr>
-                        <td colspan="9" class="text-center">No courses added yet</td>
+                        <th>CRN</th>
+                        <th>Subject</th>
+                        <th>Course</th>
+                        <th>Instructor</th>
+                        <th>Days & Location</th>
+                        <th>Date</th>
+                        <th>Credits</th>
+                        <th>Description</th>
+                        <th>Actions</th>
                     </tr>
-                <% } %>
-            </tbody>
-            
-        </table>
+                </thead>
+                <tbody>
+                    <% if (Array.isArray(course)) { %>
+                        <% course.forEach(course => { %>
+                            <tr id="course-<%= course._id %>">
+                                <td><%= course.crn %></td>
+                                <td><%= course.subject %></td>
+                                <td><%= course.course %></td>
+                                <td><%= course.instructor %></td>
+                                <td><%= course.daysLocation %></td>
+                                <td><%= course.date %></td>
+                                <td><%= course.credits %></td>
+                                <td><%= course.description %></td>
+                                <td style="width: 200px;">
+                                    <button class="btn" onclick="addToSchedule('<%= course._id %>', '<%= course.crn %>', '<%= course.subject %>', '<%= course.course %>', '<%= course.instructor %>', '<%= course.daysLocation %>', '<%= course.date %>', '<%= course.credits %>', '<%= course.description %>')">Add</button>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="9" class="text-center">No courses added yet</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    
+    <h2 style="color: rgb(254, 254, 254); text-align: center;">Current Catalog</h2>
+    <section class="container p-5">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped" id="scheduleTable">
+                <thead>
+                    <tr>
+                        <th>CRN</th>
+                        <th>Subject</th>
+                        <th>Course</th>
+                        <th>Instructor</th>
+                        <th>Days & Location</th>
+                        <th>Date</th>
+                        <th>Credits</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="scheduleBody"></tbody>
+            </table>
+        </div>
+    </section>
 
     <%- include('../partials/footer.ejs') %>
+
+    <script>
+        function addToSchedule(id, crn, subject, course, instructor, daysLocation, date, credits, description) {
+            const scheduleBody = document.getElementById('scheduleBody');
+            const newRow = document.createElement('tr');
+            newRow.id = 'schedule-' + id;
+            newRow.innerHTML = `
+                <td>${crn}</td>
+                <td>${subject}</td>
+                <td>${course}</td>
+                <td>${instructor}</td>
+                <td>${daysLocation}</td>
+                <td>${date}</td>
+                <td>${credits}</td>
+                <td>${description}</td>
+                <td><button class="btn" onclick="dropFromSchedule('${id}')">Drop</button></td>
+            `;
+            scheduleBody.appendChild(newRow);
+        }
+
+        function dropFromSchedule(id) {
+            const row = document.getElementById('schedule-' + id);
+            if (row) row.remove();
+        }
+    </script>
 </body>
 </html>
