@@ -162,11 +162,19 @@ tbody tr:nth-child(odd) {
 
 
 .form-label {
+    text-align: center;
     font-weight: bold; 
-    color: #cbc6ae; 
+    color: #ffffff; 
     margin-bottom: 1rem; 
     margin-top: 1rem;
 }
+
+.form-control {
+    width: 600%;
+    max-width: 400px;
+    min-width: 250px;
+}
+
 
 .co {
     margin-bottom: 50px; 
