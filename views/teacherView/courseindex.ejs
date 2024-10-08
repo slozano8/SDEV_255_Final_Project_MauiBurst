@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+<link rel="stylesheet" href="/public/style.css">
+<body>
+    <%- include('../partials/nav.ejs') %> 
+
+    <h2 class="text-center">Course Catalog</h2>
+
+ 
+    <section class="container p-5">
+        <h3 class="text-center co">Current Course Catalog: </h3>
+        <table class="table table-bordered table-striped" id="courseTable">
+            <thead>
+                <tr>
+                    <th>CRN</th>
+                    <th>Subject</th>
+                    <th>Course</th>
+                    <th>Instructor</th>
+                    <th>Days & Location</th>
+                    <th>Date</th>
+                    <th>Credits</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (Array.isArray(course)) { %>
+                    <% course.forEach(course => { %>
+                        <tr id="course-<%= course._id %>">
+                            <td><%= course.crn %></td>
+                            <td><%= course.subject %></td>
+                            <td><%= course.course %></td>
+                            <td><%= course.instructor %></td>
+                            <td><%= course.daysLocation %></td>
+                            <td><%= course.date %></td>
+                            <td><%= course.credits %></td>
+                            <td><%= course.description %></td>
+                            <td>
+                                <button class="btn btn-danger" onclick="deleteCourse('<%= course._id %>')">Delete</button>
+                            </td>
+                        </tr>
+                    <% }); %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="9" class="text-center">No courses have been added yet</td>
+                    </tr>
+                <% } %>
+            </tbody>
+            
+        </table>
+    </section>
+
+    
+
+    <section class="container p-5">
+        <h3 class="text-center">Create Course:</h3>
+        <form action="/courseindex" method="POST" class="course-form">
+
+            <div class="form-group">
+                <label for="crn" class="form-label">CRN:</label>
+                <input type="number" id="crn" name="crn" class="form-control form-control-sm" required>
+            </div>
+            <div class="form-group">
+                <label for="subject" class="form-label">Subject:</label>
+                <input type="text" id="subject" name="subject" class="form-control form-control-sm" required>
+            </div>
+            <div class="form-group">
+                <label for="course" class="form-label">Course:</label>
+                <input type="number" id="course" name="course" class="form-control form-control-sm" required>
+            </div>
+            <div class="form-group">
+                <label for="instructor" class="form-label">Instructor:</label>
+                <input type="text" id="instructor" name="instructor" class="form-control form-control-sm" required>
+            </div>
+            <div class="form-group">
+                <label for="daysLocation" class="form-label">Days & Location:</label>
+                <input type="text" id="daysLocation" name="daysLocation" class="form-control form-control-sm" required>
+            </div>
+            <div class="form-group">
+                <label for="date" class="form-label">Date:</label>
+                <input type="date" id="date" name="date" class="form-control form-control-sm" required>
+            </div>
+            <div class="form-group">
+                <label for="credits" class="form-label">Credits:</label>
+                <input type="number" id="credits" name="credits" class="form-control form-control-sm" required>
+            </div>
+            <div class="form-group">
+                <label for="description" class="form-label">Description:</label>
+                <textarea id="description" name="description" class="form-control form-control-sm" required></textarea>
+            </div>
+            
+            <div class="text-center mb-4 mt-4">
+                <button type="submit" class="btn btn-primary">Add Course</button>
+                <button type="button" id="deleteCourseBtn" class="btn btn-danger ms-2">Delete Course</button>
+            </div>
+        </form>
+    </section>
+
+    <script>
+        function deleteCourse(id) {
+            fetch(`/course/${id}`, {
+                method: 'DELETE'
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Remove the row from the DOM
+                    const row = document.getElementById(`course-${id}`);
+                    if (row) {
+                        row.remove();
+                    }
+                } else {
+                    alert('Failed to delete course');
+                }
+            })
+            .catch(err => console.error(err));
+        }
+    </script>
+    
+
+    <footer class="text-center p-4">
+        <div class="container">
+            <p class="mb-0">2024 MB College</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -41,15 +41,15 @@ h2 {text-align: center;
 
 h4 {	font-size: 2rem;
     text-align: center;
-    margin-bottom: 1rem; /* Space below the heading */
+    margin-bottom: 1rem; 
 }
 
 p { color: #1D5B0D; 
-    text-align: center; /* Center the text */
-    max-width: 600px; /* Limit the width for better readability */
-    line-height: 1.5; /* Add line height for spacing between lines */
-    margin: 0 auto; /* Center the paragraph */
-    padding: 0 1rem; /* Optional: add horizontal padding */
+    text-align: center; 
+    max-width: 600px; 
+    line-height: 1.5; 
+    margin: 0 auto; 
+    padding: 0 1rem; 
 }
 
 p1 {
@@ -118,7 +118,7 @@ p1 {
 }
 
 footer {
-    background-color: #1D5B0D; 
+    
     color: #ffffff;
 }
 
@@ -143,7 +143,7 @@ table th {
 }
 
 tbody tr:nth-child(even) {
-    background-color: #ffffff; /* White for even rows */
+    background-color: #ffffff; /* White for rows */
 }
 
 tbody tr:nth-child(odd) {
@@ -159,8 +159,16 @@ tbody tr:nth-child(odd) {
     cursor: pointer;
 }
 
-.btn-add-course:hover {
-    background-color: #ffffff; 
+
+.form-label {
+    font-weight: bold; 
+    color: #cbc6ae; 
+    margin-bottom: 1rem; 
+    margin-top: 1rem;
+}
+
+.co {
+    margin-bottom: 50px; 
 }
 
 .container {
