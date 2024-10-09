@@ -82,20 +82,23 @@ p1 {
 }
 
 .card {
-    border: none;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
-.card.bg-dark {
-    background-color: #27ae60; 
+.equal-card {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
 }
 
-.card.bg-secondary {
-    background-color: #f39c12;
+.card-body {
+    flex: 1; 
 }
+.card-text {
+    margin-bottom: 1rem;}
 
-.card.bg-light {
-    background-color: #ecf0f1;
-}
 
 
 .btn-dark {
