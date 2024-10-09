@@ -44,6 +44,13 @@ app.get('/', (req, res) => {
     res.render('index', { title: 'Home' });
 });
 
+app.get('/login', (req, res) => {
+    res.render('login', {title: 'login'});
+});
+
+app.get('/register', (req, res) =>{
+    res.render('register', {title: 'Registration'});
+})
 
 app.get('/buildSchedule', async (req, res) => {
     try {
