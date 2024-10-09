@@ -30,7 +30,7 @@
                             <tr id="course-<%= course._id %>">
                                 <td><%= course.crn %></td>
                                 <td><%= course.subject %></td>
-                                <td><%= course.course %></td>
+                                <td><a href="/course/<%= course._id %>"><%= course.course %></a></td>
                                 <td><%= course.instructor %></td>
                                 <td><%= course.daysLocation %></td>
                                 <td><%= course.date %></td>

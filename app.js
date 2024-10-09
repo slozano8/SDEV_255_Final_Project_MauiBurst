@@ -67,6 +67,7 @@ app.get('/courseIndex', (req, res) => {
 });
 
 
+
 // Course creation route
 // Get all courses and show the course index page
 app.get('/courseindex', (req, res) => {
@@ -79,13 +80,13 @@ app.get('/courseindex', (req, res) => {
             res.status(500);
         });
 });
-
 // Handle adding a new course
 app.post('/courseindex', (req, res) => {
     const course = new Course(req.body);
     course.save()
         .then(() => {
-            res.redirect('../courseindex');
+            // Redirect to course details page
+            res.redirect(`/course/${course._id}`);
         })
         .catch((err) => {
             console.log(err);
@@ -94,24 +95,23 @@ app.post('/courseindex', (req, res) => {
 });
 
 
-
 // Get course details
 app.get('/course/:id', (req, res) => {
     const id = req.params.id;
     Course.findById(id)
         .then(result => {
-            render('details', { course: result, title:'Course Detials '});
+            if (!result) {
+                return res.status(404).send('Course not found');
+            }
+            res.render('coursedetails', { course: result, title: 'Course Details' }); 
         })
         .catch(err => {
             console.log(err);
+            res.status(500);
         });
-});
+})
 
-//access create
 
-app.get('/create', (req, res) => {
-    res.render('create', { title: 'Create Course' });
-});
 
 //delete
 app.delete('/course/:id', (req, res) => {
