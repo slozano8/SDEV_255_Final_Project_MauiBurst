@@ -5,7 +5,13 @@
 <body>
 
     <%- include('../partials/studentNav.ejs') %> 
-
+    <div class="container mt-5 pb-5 pt-5" >
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Course Search">
+            </div>
+        </div>
+    </div>
     <h1 style="text-align: center; font-size: 5rem;color:#2B8813; ">1234</h1>
     <h2 style="color: rgb(254, 254, 254); text-align: center;">Course Catalog</h2>
     <section class="container p-5">
@@ -97,6 +103,27 @@
         function dropFromSchedule(id) {
             const row = document.getElementById('schedule-' + id);
             if (row) row.remove();
+        }
+
+
+        function myFunction(){
+            let input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById('myInput');
+            filter = input.value.toUpperCase();
+            table = document.getElementById('courseTable');
+            tr = table.getElementsByTagName('tr');
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName('td') [1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
         }
     </script>
 </body>
