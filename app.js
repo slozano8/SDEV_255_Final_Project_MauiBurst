@@ -129,8 +129,21 @@ app.delete('/course/:id', (req, res) => {
             res.status(200).json({ message: 'Course deleted successfully' });
         })
         .catch(err => {
-            console.log(err)
-        })
+            console.log(err);
+        });
+})
+
+app.get('/edit/:id', (req, res) => {
+    const id = req.params.id;
+    Course.findOneAndUpdate(id)
+    .then(() => {
+        res.status(200).json({ message: 'Course has been updated'});
+    })
+    .catch(err => {
+        console.log(err);
+    });
+
+    res.render('edit', {course: result});
 })
 
 app.get('/logout', (req,res) => {
