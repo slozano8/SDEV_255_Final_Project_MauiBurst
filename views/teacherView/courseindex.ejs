@@ -39,7 +39,7 @@
                                 <button class="btn btn-danger" onclick="deleteCourse('<%= course._id %>')">Delete</button>
                             </td>
                             <td>
-                                <button class="btn btn-danger" onclick="editCourse('<%= course._id %>')">Edit</button>
+                                <a class="btn btn-danger" href="/updateCourse/<%= course._id %>">Edit</a>
                             </td>
                         </tr>
                     <% }); %>

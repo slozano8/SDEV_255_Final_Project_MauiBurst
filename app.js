@@ -74,6 +74,37 @@ app.get('/courseIndex', (req, res) => {
         });
 });
 
+app.post('/updateCourse/:id', async(req, res) => {
+    try{
+        const courseId = req.params.id;
+        const course = await course.findById(courseId);
+
+        if(!course) {
+            req.flash('error', 'Course not found!');
+            return res.redirect('courseIndex');
+        }
+
+        course.crn = req.body.crn;
+        course.subject = req.body.subject;
+        course.course = req.body.course;
+        course.instructor = req.body.instructor;
+        course.daysLocation = req.body.daysLocation;
+        course.date = req.body.date;
+        course.credits = req.body.credits;
+        course.description = req.body.description;
+        
+
+
+        await course.save();
+        req.flash('success', 'Course updated successfully!');
+        res.redirect('/courseIndex');
+
+    }catch (error) {
+        console.error(error);
+        res.rediret('/courseIndex');
+    }
+});
+
 
 
 // Course creation route
@@ -133,18 +164,24 @@ app.delete('/course/:id', (req, res) => {
         });
 })
 
-app.get('/edit/:id', (req, res) => {
-    const id = req.params.id;
-    Course.findOneAndUpdate(id)
-    .then(() => {
-        res.status(200).json({ message: 'Course has been updated'});
-    })
-    .catch(err => {
-        console.log(err);
-    });
+app.get('/updateCourse/:id', async(req, res) => {
+    try{
+        const courseId = req.params.id;
+        const course = await Course.findById(courseId);
 
-    res.render('edit', {course: result});
-})
+        if (!course){
+            req.flash('error', 'Course not found!');
+            return res.redirect('/courseIndex');
+        }
+        res.render('./teacherView/updateCourse', { title: 'Edit Course', active: 'update_course', course});
+
+    } catch (error) {
+        console.error(error);
+        req.flash('error', 'something went wrong!');
+        res.redirect('/courseIndex');
+    }
+    
+});
 
 app.get('/logout', (req,res) => {
     res.cookie('jwt', '', {maxAge: 1});

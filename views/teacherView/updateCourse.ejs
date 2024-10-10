@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+<link rel="stylesheet" href="/public/style.css">
+<body>
+    <%- include('../partials/nav.ejs') %> 
+
+    <h1 style="text-align: center; font-size: 4rem;color:#2B8813; ">1234</h1>
+    <h2 style="color: rgb(254, 254, 254); text-align: center;">Course Catalog</h2>
+    <section class="container p-5">
+        <form action="/updateCourse/<%= course._id %>" method="post" class="course-form">
+
+            <div class="form-group">
+                <label for="crn" class="form-label">CRN:</label>
+                <input type="number" id="crn" name="crn" class="form-control form-control-sm" value="<%= course.crn %>">
+            </div>
+            <div class="form-group">
+                <label for="subject" class="form-label">Subject:</label>
+                <input type="text" id="subject" name="subject" class="form-control form-control-sm" value="<%= course.subject %>" required>
+            </div>
+            <div class="form-group">
+                <label for="course" class="form-label">Course:</label>
+                <input type="number" id="course" name="course" class="form-control form-control-sm" value="<%= course.course %>" required>
+            </div>
+            <div class="form-group">
+                <label for="instructor" class="form-label">Instructor:</label>
+                <input type="text" id="instructor" name="instructor" class="form-control form-control-sm" value="<%= course.instructor %>" required>
+            </div>
+            <div class="form-group">
+                <label for="daysLocation" class="form-label">Days & Location:</label>
+                <input type="text" id="daysLocation" name="daysLocation" class="form-control form-control-sm" value="<%= course.daysLocation %>" required>
+            </div>
+            <div class="form-group">
+                <label for="date" class="form-label">Date:</label>
+                <input type="date" id="date" name="date" class="form-control form-control-sm" value="<%= course.date %>" required>
+            </div>
+            <div class="form-group">
+                <label for="credits" class="form-label">Credits:</label>
+                <input type="number" id="credits" name="credits" class="form-control form-control-sm" value="<%= course.credits %>" required>
+            </div>
+            <div class="form-group">
+                <label for="description" class="form-label">Description:</label>
+                <textarea id="description" name="description" class="form-control form-control-sm"  required><%= course.description %></textarea>
+            </div>
+            
+            <div class="text-center mb-4 mt-4">
+                <button type="submit" class="btn btn-primary">Edit Course </button>
+                <button type="button" id="deleteCourseBtn" class="btn btn-danger ms-2">Delete Course</button>
+            </div>
+        </form>
+    </section>
+    <footer class="text-center p-4">
+        <div class="container">
+            <p class="mb-0">2024 MB College</p>
+        </div>
+    </footer>
+</body>
+</html>
