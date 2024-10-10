@@ -34,3 +34,5 @@ exports.register = async (req, res) => {
         res.status(500).send('Error registering user');
       });
   };
+
+  

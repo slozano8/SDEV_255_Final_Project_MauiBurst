@@ -52,6 +52,7 @@ app.get('/register', (req, res) =>{
     res.render('register', {title: 'Registration'});
 })
 
+
 app.get('/buildSchedule', async (req, res) => {
     try {
         const courses = await Course.find();
@@ -132,7 +133,10 @@ app.delete('/course/:id', (req, res) => {
         })
 })
 
-
+app.get('/logout', (req,res) => {
+    res.cookie('jwt', '', {maxAge: 1});
+    res.redirect('/');
+})
 
 
 
