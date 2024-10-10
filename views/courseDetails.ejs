@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+<link rel="stylesheet" href="/public/style.css">
+<style>
+    body {
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .details-container {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        width: 100%;
+        text-align: center;
+    }
+    .detail-item {
+        margin: 1rem 0;
+        font-size: 1.2rem;
+    }
+
+
+    footer {
+        text-align: center;
+        padding: 1rem 0;
+    }
+</style>
+<body>
+    <%- include('./partials/nav.ejs') %>
+
+
+    <div class="details-container">
+        <h1>Details for course # <%= course.course %> </h1>
+        <div class="detail-item"><strong>CRN:</strong> <%= course.crn %></div>
+        <div class="detail-item"><strong>Subject:</strong> <%= course.subject %></div>
+        <div class="detail-item"><strong>Instructor:</strong> <%= course.instructor %></div>
+        <div class="detail-item"><strong>Days & Location:</strong> <%= course.daysLocation %></div>
+        <div class="detail-item"><strong>Date:</strong> <%= course.date %></div>
+        <div class="detail-item"><strong>Credits:</strong> <%= course.credits %></div>
+        <div class="detail-item"><strong>Description:</strong> <%= course.description %></div>
+    </div>
+
+    
+
+    
+</body>
+</html>
