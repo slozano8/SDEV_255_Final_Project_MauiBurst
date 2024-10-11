@@ -45,8 +45,8 @@
             e.preventDefault();
 
             // Reset errors
-            emailError.textContent = '';
-            passwordError.textContent = '';
+            
+            
 
             // Get the values
             const email = form.email.value;
@@ -65,7 +65,7 @@
                     passwordError.textContent = data.errors.password;
                 }
                 if (data.user) {
-                    location.assign('/');
+                    location.assign('/buildSchedule');
                 }
             } catch (err) {
                 console.log(err);
