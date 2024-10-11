@@ -1,5 +1,5 @@
-<%- include('./partials/head.ejs') %>
-<%- include('./partials/studentNav.ejs') %> 
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/studentNav.ejs') %> 
 <html lang="en">
 
 
@@ -13,7 +13,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title text-center">Create an Account</h5> 
-                <form action="/register" method="POST" class="text-center"> 
+                <form action="/signup" method="POST" class="text-center"> 
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" class="form-control" id="username" name="username" required placeholder="Enter username" style="max-width: 150px; margin: auto;">
@@ -61,7 +61,7 @@
             const password = form.password.value;
 
             try {
-                const res = await fetch('/register', {
+                const res = await fetch('/signup', {
                     method: 'POST',
                     body: JSON.stringify({ username: username, email: email, password: password }),
                     headers: { 'Content-Type': 'application/json' }
