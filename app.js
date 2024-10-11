@@ -4,6 +4,9 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const Course = require('./models/courses');
+const authRoutes = require('./routes/authRoutes');
+const cookieParser = require('cookie-parser');
+
 
 
 
@@ -12,7 +15,7 @@ const Course = require('./models/courses');
 
 
 const app = express();
-const port = 3000; 
+
 
 //mongodb
 const dbURI = 'mongodb+srv://Maui_Burst:SDEV123@nodes-tutorial.w4fan.mongodb.net/Maui_Burst'
@@ -27,6 +30,8 @@ app.use('/public', express.static('public'));
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: true}));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.json());
+app.use(cookieParser());
 
 
 
@@ -39,23 +44,24 @@ const isAuthenticated = (req, res, next) => {
   };
 
   app.get('/dashboard', isAuthenticated, (req, res) => {
-    // Dashboard content
+     //Dashboard content
   });
 
 //page routes
 
-app.get('/', (req, res) => {
-    res.render('index', { title: 'Home' });
-});
+
 
 app.get('/login', (req, res) => {
-    res.render('./userLoginRegistration/login', {title: 'login'});
+    res.render('login', {title: 'login'});
 });
 
 app.get('/signup', (req, res) =>{
-    res.render('./userLoginRegistration/signup', {title: 'signup'});
+    res.render('signup', {title: 'signup'});
 })
 
+app.get('/', (req, res) => {
+    res.render('index', { title: 'Home' });
+});
 
 app.get('/buildSchedule', async (req, res) => {
     try {
@@ -77,6 +83,10 @@ app.get('/courseindex', (req, res) => {
             res.status(500);
         });
 });
+
+app.use(authRoutes);
+
+
 
 
 
