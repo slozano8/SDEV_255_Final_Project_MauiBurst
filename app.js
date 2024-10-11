@@ -9,6 +9,8 @@ const Course = require('./models/courses');
 
 
 
+
+
 const app = express();
 const port = 3000; 
 
@@ -25,6 +27,8 @@ app.use('/public', express.static('public'));
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: true}));
 app.use(bodyParser.urlencoded({extended: true}));
+
+
 
 //Login Middleware
 const isAuthenticated = (req, res, next) => {
@@ -45,11 +49,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-    res.render('login', {title: 'login'});
+    res.render('./userLoginRegistration/login', {title: 'login'});
 });
 
-app.get('/register', (req, res) =>{
-    res.render('register', {title: 'Registration'});
+app.get('/signup', (req, res) =>{
+    res.render('./userLoginRegistration/signup', {title: 'signup'});
 })
 
 
@@ -63,7 +67,7 @@ app.get('/buildSchedule', async (req, res) => {
 });
 
 
-app.get('/courseIndex', (req, res) => {
+app.get('/courseindex', (req, res) => {
     Course.find().sort({ createdAt: -1 })
         .then((courses) => {
             res.render('./teacherView/courseindex', { title: 'Course Catalog', course: courses });
@@ -73,6 +77,7 @@ app.get('/courseIndex', (req, res) => {
             res.status(500);
         });
 });
+
 
 
 
@@ -140,14 +145,14 @@ app.get('/updateCourse/:id', async(req, res) => {
 
         if (!course){
             req.flash('error', 'Course not found!');
-            return res.redirect('/courseIndex');
+            return res.redirect('/courseindex');
         }
         res.render('./teacherView/updateCourse', { title: 'Edit Course', active: 'update_course', course});
 
     } catch (error) {
         console.error(error);
         req.flash('error', 'something went wrong!');
-        res.redirect('/courseIndex');
+        res.redirect('/courseindex');
     }
     
 });
@@ -159,7 +164,7 @@ app.post('/updateCourse/:id', async(req, res) => {
 
         if(!course) {
             req.flash('error', 'Course not found!');
-            return res.redirect('/courseIndex');
+            return res.redirect('/courseindex');
         }
 
        
@@ -177,12 +182,13 @@ app.post('/updateCourse/:id', async(req, res) => {
         
 
         await course.save();
+        
        
         
 
     }catch (error) {
         console.error(error);
-        res.redirect('/courseIndex');
+        res.redirect('/courseindex');
     }
 });
 
