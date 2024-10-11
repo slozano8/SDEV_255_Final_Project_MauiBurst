@@ -22,5 +22,7 @@ const ensureStudent = (req, res, next) => {
     }
 };
 
-module.exports = { ensureTeacher, ensureStudent };
-*/
+module.exports = { ensureTeacher, ensureStudent };*/
+
+
+
