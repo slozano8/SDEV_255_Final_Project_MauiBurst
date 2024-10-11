@@ -19,8 +19,8 @@ const app = express();
  
 
 //mongodb
-//const dbURI = 'mongodb+srv://Maui_Burst:SDEV123@nodes-tutorial.w4fan.mongodb.net/Maui_Burst'
-const dbURI = 'mongodb+srv://NewOne:NewOne@nodejs.qx72q.mongodb.net/?retryWrites=true&w=majority&appName=NodeJs'
+const dbURI = 'mongodb+srv://Maui_Burst:SDEV123@nodes-tutorial.w4fan.mongodb.net/Maui_Burst'
+//const dbURI = 'mongodb+srv://NewOne:NewOne@nodejs.qx72q.mongodb.net/?retryWrites=true&w=majority&appName=NodeJs'
 mongoose.connect(dbURI, {useNewURLParser: true, useUnifiedTopology: true })
     .then((result) => app.listen(3030))
     .catch((err) => console.log(err));
@@ -42,13 +42,7 @@ app.use(cookieParser());
 
 
 app.get('*', checkUser);
-app.get('/login', (req, res) => {
-    res.render('login', {title: 'login'});
-});
 
-app.get('/signup', (req, res) =>{
-    res.render('signup', {title: 'signup'});
-})
 
 app.get('/', (req, res) => {
     res.render('index', { title: 'Home' });

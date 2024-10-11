@@ -1,11 +1,11 @@
-const bycrypt = require('bcryptjs');
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
+const bycrypt = require('bcryptjs');
 
 //handle errors
 const handleErrors = (err) => {
     console.log(err.message, err.code);
-    let errors = {   email: '', password: '' };
+    let errors = { email: '', password: '' };
 
     //incorrect email
     if(err.message === 'incorrect email') {
@@ -19,8 +19,8 @@ const handleErrors = (err) => {
     }
 
     //duplicate error code
-    if (err.code === 11000){
-        errors.email = 'That email is already registered'
+    if (errors.code === 11000) {
+        errors.email = 'That email is already registered';
         return errors;
     }
 
@@ -52,25 +52,25 @@ module.exports.signup_post = async (req, res) => {
     const { email, password, role } = req.body;
 
     try{
-        const user = await User.create({  email, password });
+        const user = await User.create({ email, password, role });
         const token = createToken(user._id);
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000});
         res.status(201).json({ user: user._id});
     }
     catch (err) {
-        console.log(err);
-        res.status(400).json({errors});
+        const errors = handleErrors(err);
+        res.status(400).json({ errors });
     }
 }
 
 module.exports.login_post = async (req, res) => {
-    const {email, password} = req.body;
+    const {email, password, role} = req.body;
 
     try {
-        const user = await User.login(email, password);
+        const user = await User.login(email, password, role);
         const token = createToken(user._id);
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000});
-        res.status(200).json({ user: user._id});
+        res.status(201).json({ user: user._id});
     }
     catch (err) {
         const errors = handleErrors(err);
