@@ -15,10 +15,11 @@ const cookieParser = require('cookie-parser');
 
 
 const app = express();
-
+const port = 3000; 
 
 //mongodb
-const dbURI = 'mongodb+srv://Maui_Burst:SDEV123@nodes-tutorial.w4fan.mongodb.net/Maui_Burst'
+//const dbURI = 'mongodb+srv://Maui_Burst:SDEV123@nodes-tutorial.w4fan.mongodb.net/Maui_Burst'
+const dbURI = 'mongodb+srv://NewOne:NewOne@nodejs.qx72q.mongodb.net/?retryWrites=true&w=majority&appName=NodeJs'
 mongoose.connect(dbURI, {useNewURLParser: true, useUnifiedTopology: true })
     .then((result) => app.listen(3030))
     .catch((err) => console.log(err));
