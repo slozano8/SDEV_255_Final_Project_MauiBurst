@@ -173,9 +173,8 @@ tbody tr:nth-child(odd) {
 }
 
 .form-control {
-    width: 600%;
-    max-width: 400px;
-    min-width: 250px;
+    width: 100%;
+
 }
 
 
