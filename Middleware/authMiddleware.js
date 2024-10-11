@@ -1,11 +1,12 @@
 const jwt = require('jsonwebtoken');
+const User = require('../models/user');
 
 const requireAuth = (req, res, next) => {
     const token = req.cookies.jwt;
 
     //check json web token exists & is verified
     if (token) {
-        jwt.verify(token, '', (err, decodedToken) => {
+        jwt.verify(token, 'Maui_Burst secret', (err, decodedToken) => {
             if (err) {
                 console.log(err.message);
                 res.redirect('/login');
@@ -26,7 +27,7 @@ const checkUser = (req, res, next) => {
     const token = req.cookies.jwt;
 
     if (token) {
-        jwt.verify(token, '', async (err, decodedToken) => {
+        jwt.verify(token, 'Maui_Burst secret', async (err, decodedToken) => {
             if (err) {
                 console.log(err.message);
                 res.locals.user = null;

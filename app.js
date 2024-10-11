@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const Course = require('./models/courses');
 const authRoutes = require('./routes/authRoutes');
 const cookieParser = require('cookie-parser');
-
+const {requireAuth, checkUser} = require('./Middleware/authMiddleware');
 
 
 
@@ -15,11 +15,12 @@ const cookieParser = require('cookie-parser');
 
 
 const app = express();
-const port = 3000; 
+
+ 
 
 //mongodb
-//const dbURI = 'mongodb+srv://Maui_Burst:SDEV123@nodes-tutorial.w4fan.mongodb.net/Maui_Burst'
-const dbURI = 'mongodb+srv://NewOne:NewOne@nodejs.qx72q.mongodb.net/?retryWrites=true&w=majority&appName=NodeJs'
+const dbURI = 'mongodb+srv://Maui_Burst:SDEV123@nodes-tutorial.w4fan.mongodb.net/Maui_Burst'
+//const dbURI = 'mongodb+srv://NewOne:NewOne@nodejs.qx72q.mongodb.net/?retryWrites=true&w=majority&appName=NodeJs'
 mongoose.connect(dbURI, {useNewURLParser: true, useUnifiedTopology: true })
     .then((result) => app.listen(3030))
     .catch((err) => console.log(err));
@@ -36,22 +37,11 @@ app.use(cookieParser());
 
 
 
-//Login Middleware
-const isAuthenticated = (req, res, next) => {
-    if (req.isAuthenticated()) {
-      return next();
-    }
-    res.redirect('/login');
-  };
-
-  app.get('/dashboard', isAuthenticated, (req, res) => {
-     //Dashboard content
-  });
 
 //page routes
 
 
-
+app.get('*', checkUser);
 app.get('/login', (req, res) => {
     res.render('login', {title: 'login'});
 });
@@ -64,7 +54,7 @@ app.get('/', (req, res) => {
     res.render('index', { title: 'Home' });
 });
 
-app.get('/buildSchedule', async (req, res) => {
+app.get('/buildSchedule', requireAuth, async (req, res) => {
     try {
         const courses = await Course.find();
         res.render('./studentView/buildSchedule', { course: courses, title: 'Build Schedule' });
