@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const Course = require('./models/courses');
 const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
 const cookieParser = require('cookie-parser');
 const {requireAuth, checkUser} = require('./Middleware/authMiddleware');
 
@@ -48,7 +49,7 @@ app.get('/', (req, res) => {
     res.render('index', { title: 'Home' });
 });
 
-app.get('/buildSchedule', requireAuth, async (req, res) => {
+app.get('/buildSchedule',  async (req, res) => {
     try {
         const courses = await Course.find();
         res.render('./studentView/buildSchedule', { course: courses, title: 'Build Schedule' });
@@ -70,6 +71,7 @@ app.get('/courseindex', (req, res) => {
 });
 
 app.use(authRoutes);
+app.use(userRoutes);
 
 
 
